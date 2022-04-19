@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.detroitlabs.fantasybball.service.StatsServiceTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-04-19T18:29:40" hostname="Collins-MBP.attlocal.net" time="0.011">
+<testsuite name="com.detroitlabs.fantasybball.service.StatsServiceTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-04-19T19:14:47" hostname="Collins-MBP.attlocal.net" time="0.012">
   <properties/>
-  <testcase name="fetchStats_should_return_firstName()" classname="com.detroitlabs.fantasybball.service.StatsServiceTest" time="0.011"/>
-  <system-out><![CDATA[14:29:39.906 [Test worker] DEBUG org.springframework.web.client.RestTemplate - HTTP GET https://www.balldontlie.io/api/v1/players?page=0&per_page%09=50
-14:29:39.949 [Test worker] DEBUG org.springframework.web.client.RestTemplate - Accept=[application/json, application/*+json]
-14:29:40.270 [Test worker] DEBUG org.springframework.web.client.RestTemplate - Response 200 OK
-14:29:40.275 [Test worker] DEBUG org.springframework.web.client.RestTemplate - Reading to [com.detroitlabs.fantasybball.model.Player]
-Ike
+  <testcase name="fetchPlayerStats_should_return_Goran_Dragic()" classname="com.detroitlabs.fantasybball.service.StatsServiceTest" time="0.012"/>
+  <system-out><![CDATA[15:14:46.329 [Test worker] DEBUG org.springframework.web.client.RestTemplate - HTTP GET https://www.balldontlie.io/api/v1/players?page=0&per_page%09=50
+15:14:46.366 [Test worker] DEBUG org.springframework.web.client.RestTemplate - Accept=[application/json, application/*+json]
+15:14:46.680 [Test worker] DEBUG org.springframework.web.client.RestTemplate - Response 200 OK
+15:14:46.684 [Test worker] DEBUG org.springframework.web.client.RestTemplate - Reading to [com.detroitlabs.fantasybball.model.ParentClass]
+15:14:46.702 [Test worker] DEBUG org.springframework.web.client.RestTemplate - HTTP GET https://www.balldontlie.io/api/v1/stats?end_date=2022-04-18
+15:14:46.704 [Test worker] DEBUG org.springframework.web.client.RestTemplate - Accept=[application/json, application/*+json]
+15:14:47.252 [Test worker] DEBUG org.springframework.web.client.RestTemplate - Response 200 OK
+15:14:47.253 [Test worker] DEBUG org.springframework.web.client.RestTemplate - Reading to [com.detroitlabs.fantasybball.model.ParentClass]
+Goran Dragic
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

@@ -1,16 +1,34 @@
 package com.detroitlabs.fantasybball.model;
 
+
+//matches JSON field of "player" used to match player to stats recorded
 public class Player {
 
-    public Data[] getData() {
-        return data;
+    private int id; //TODO make sure this matches the id in Data
+    private String first_name;
+    private String last_name;
+
+    public int getId() {
+        return id;
     }
 
-    public void setData(Data[] data) {
-        this.data = data;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    private Data data[];
+    public String getFirst_name() {
+        return first_name;
+    }
 
+    public void setFirst_name(String first_name) {
+        this.first_name = first_name;
+    }
 
+    public String getLast_name() {
+        return last_name;
+    }
+
+    public void setLast_name(String last_name) {
+        this.last_name = last_name;
+    }
 }

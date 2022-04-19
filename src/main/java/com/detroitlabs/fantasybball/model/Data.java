@@ -2,8 +2,8 @@ package com.detroitlabs.fantasybball.model;
 
 public class Data {
 
-    //postman fields
-    private int id;
+    //postman fields to return individual player information
+    private int id; //TODO should match id from Player class pulled in dataStats
     private String first_name;
     private String last_name;
     private String position;
