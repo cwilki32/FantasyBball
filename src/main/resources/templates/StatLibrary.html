@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" th:href="@{/app.css}"/>
+    <title>Player Library</title>
+</head>
+<body>
+
+<!--<div th:each="player: ${SeasonStats}">-->
+<!--    <span th:text="${player.id}"> </span>-->
+<div th:each="playerStat: ${SeasonStats}">
+    <span th:text="${playerStat.player_id} + ' ' + ${playerStat.games_played} + ' ' + ${playerStat.pts}">
+
+    </span>
+
+</div>
+</body>
+</html>

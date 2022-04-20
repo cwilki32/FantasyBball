@@ -2,18 +2,13 @@ package com.detroitlabs.fantasybball.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class ParentClass {
 
-    private Data data[];
+//parent class to manage PLAYER STATS
+
+//CREATED BECAUSE DIFFERENT API REQUESTS USE SAME FIELD NAME OF DATA
+public class ParentStat {
+
     private PlayerStats stats[];
-
-    public Data[] getPlayerData() {
-        return data;
-    }
-
-    public void setData(Data[] data) {
-        this.data = data;
-    }
 
 
     @JsonProperty("data")
