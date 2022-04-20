@@ -10,7 +10,8 @@
 <!--<div th:each="player: ${SeasonStats}">-->
 <!--    <span th:text="${player.id}"> </span>-->
 <div th:each="playerStat: ${SeasonStats}">
-    <span th:text="${playerStat.player_id} + ' ' + ${playerStat.games_played} + ' ' + ${playerStat.pts}">
+    <span th:text="${playerStat.player_id} + ' ' + ${playerStat.games_played} + ' ' + ${playerStat.pts}
+      + ' ' + ${playerStat.reb} + ' ' + ${playerStat.ast} + ' ' + ${playerStat.blk} + ' ' + ${playerStat.stl}">
 
     </span>
 

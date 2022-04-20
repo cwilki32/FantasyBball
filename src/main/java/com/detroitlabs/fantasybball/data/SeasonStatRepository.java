@@ -1,9 +1,6 @@
 package com.detroitlabs.fantasybball.data;
 
-import com.detroitlabs.fantasybball.model.ParentSeasonAvg;
-import com.detroitlabs.fantasybball.model.PlayerVariables;
-import com.detroitlabs.fantasybball.model.SeasonAvgStats;
-import com.detroitlabs.fantasybball.model.SeasonStatsObject;
+import com.detroitlabs.fantasybball.model.*;
 import com.detroitlabs.fantasybball.service.StatsService;
 import org.springframework.stereotype.Component;
 
@@ -14,6 +11,7 @@ import java.util.List;
 public class SeasonStatRepository {
     private static ParentSeasonAvg buildStats;
     public static ArrayList<SeasonStatsObject> ALL_STATS = new ArrayList<>();
+    private static FantasyScoring fantasyScoring = new FantasyScoring();
 
 
 

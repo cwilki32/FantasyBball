@@ -2,6 +2,8 @@ package com.detroitlabs.fantasybball.model;
 
 public class SeasonStatsObject {
 
+    //used in SeasonStatRepository
+
     private int games_played;
     private int player_id;
     private String min;

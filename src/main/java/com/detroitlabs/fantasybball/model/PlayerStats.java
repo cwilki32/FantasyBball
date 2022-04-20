@@ -4,7 +4,6 @@ public class PlayerStats {
 
 
 
-
     private int id;
     private int ast; //assists
     private int blk; //blocks

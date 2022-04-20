@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 public class ParentSeasonAvg {
 
     //used to pull season figures
+    //used in StatsService.fetchSeasonAvg()
     private SeasonAvgStats seasonAvgStats[];
 
 

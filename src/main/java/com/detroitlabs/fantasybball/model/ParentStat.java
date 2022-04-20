@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 //parent class to manage PLAYER STATS
 
 //CREATED BECAUSE DIFFERENT API REQUESTS USE SAME FIELD NAME OF DATA
+//used in StatsService.fetchPlayerStats()
 public class ParentStat {
 
     private PlayerStats stats[];
