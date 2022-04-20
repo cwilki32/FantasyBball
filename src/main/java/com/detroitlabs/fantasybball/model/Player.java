@@ -1,7 +1,7 @@
 package com.detroitlabs.fantasybball.model;
 
 
-//matches JSON field of "player" used to match player to stats recorded
+//matches JSON field of "player" used for stats recorded
 public class Player {
 
     private int id; //TODO make sure this matches the id in Data
