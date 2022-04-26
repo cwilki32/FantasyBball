@@ -8,6 +8,15 @@ public class Player {
     private int id; //TODO make sure this matches the id in Data
     private String first_name;
     private String last_name;
+    private String position;
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
 
     public int getId() {
         return id;

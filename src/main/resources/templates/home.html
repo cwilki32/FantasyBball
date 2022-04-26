@@ -28,7 +28,9 @@
 </nav>
 
 <!-- top scorers section-->
-
+<div th:each="player: ${dailystat}">
+    <span th:text="${player.name} + ' ' + ${player.pos} + ' ' + ${player.teamName} + ' ' + ${player.pts}"></span>
+</div>
 <!-- top rebounders section-->
 
 <!-- top assists section-->

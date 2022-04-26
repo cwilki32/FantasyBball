@@ -40,6 +40,7 @@ public class PlayerRepository {
 
 
     //todo need to iterate through 51 pages with 75 players per page
+    //todo may need to refactor to only include players that are in playoffs/have daily stats
     //creates full list of players
     public List<PlayerVariables> buildList() {
         for (int i = 0; i < 50; i++) {
