@@ -14,18 +14,20 @@ public class StatsService {
     //creating static variable that season averages api receives in GET request
     private static int[] player_id = new int [500];
 
-    //ToDo REMINDER - API has maximum of 60 requests per minute, do not exceed when designing code
+    //TODO REMINDER - API has maximum of 60 requests per minute, do not exceed when designing code
 
     public static ParentPlayerInfo fetchPlayerInfo() {
         RestTemplate restTemplate = new RestTemplate();
-        //3757 players needs 38 total pages.... copy-paste or for Loop?
-        return restTemplate.getForObject("https://www.balldontlie.io/api/v1/players?page=1&per_page=100", ParentPlayerInfo.class);
-    }
+        //TODO 3757 players needs 38 total pages.... copy-paste or for Loop? How to Paginate?
+//        for (int i = 1; i < 39; i++) {
+            return restTemplate.getForObject("https://www.balldontlie.io/api/v1/players?page=1&per_page=100", ParentPlayerInfo.class);
+        }
+
 
     public static ParentStat fetchPlayerStats() {
         RestTemplate restTemplate = new RestTemplate();
-        //TODO make effective date in code dynamic for previous day, currently set to 4/18/22
-        return restTemplate.getForObject("https://www.balldontlie.io/api/v1/stats?end_date=2022-04-18", ParentStat.class);
+        //TODO make effective date in code dynamic for previous day, currently set to 4/19/22
+        return restTemplate.getForObject("https://www.balldontlie.io/api/v1/stats?start_date=2022-04-19", ParentStat.class);
     }
 
     //TODO BUILD API FOR SEASON AVERAGES, requires 7 attempts for all players
@@ -41,7 +43,4 @@ public class StatsService {
         return restTemplate.getForObject("https://www.balldontlie.io/api/v1/season_averages?player_ids[]="+ formattedPlayerId, ParentSeasonAvg.class);
 
     }
-
-
-
-}
+    }

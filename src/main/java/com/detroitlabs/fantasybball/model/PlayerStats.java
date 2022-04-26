@@ -18,6 +18,9 @@ public class PlayerStats {
     private int fta; //free throw attempted
     private int ftm; //free throw made
     private Player player; //field that maps to the JSON player info
+    private int pts;
+    private int reb;
+    private int stl;
 
 
     public int getId() {
@@ -130,5 +133,29 @@ public class PlayerStats {
 
     public void setPlayer(Player player) {
         this.player = player;
+    }
+
+    public int getPts() {
+        return pts;
+    }
+
+    public void setPts(int pts) {
+        this.pts = pts;
+    }
+
+    public int getReb() {
+        return reb;
+    }
+
+    public void setReb(int reb) {
+        this.reb = reb;
+    }
+
+    public int getStl() {
+        return stl;
+    }
+
+    public void setStl(int stl) {
+        this.stl = stl;
     }
 }

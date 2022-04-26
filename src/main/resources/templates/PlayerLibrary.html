@@ -7,8 +7,11 @@
 </head>
 <body>
 
-<div th:each="player: ${Players}">
-    <span th:text="${player.playerName} + ' ' + ${player.position} + ' ' + ${player.teamName}"></span>
+<div th:each="player: ${players}">
+    <span th:text="${player.value.getPlayerName()} + ' ' + ${player.value.getPosition()} + ' ' + ${player.value.getTeamName()}">
+    </span>
+<!--    <button type="submit" th:onclick="${player.setSelected(true)}" href="/myteam">Add to Team</button>-->
+    <a th:href="@{'/myteam/' + ${player.key} + '/' + ${positionIndex}}"> Add to Team</a>
 </div>
 </body>
 </html>

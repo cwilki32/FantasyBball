@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.detroitlabs.fantasybball.model.FantasyScoringTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-04-20T14:48:57" hostname="Collins-MBP.attlocal.net" time="0.014">
+<testsuite name="com.detroitlabs.fantasybball.model.FantasyScoringTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-04-20T16:48:43" hostname="Collins-MBP.attlocal.net" time="0.011">
   <properties/>
-  <testcase name="fantasy_score_should_return_()" classname="com.detroitlabs.fantasybball.model.FantasyScoringTest" time="0.014"/>
-  <system-out><![CDATA[]]></system-out>
+  <testcase name="scoring_yesterday_game()" classname="com.detroitlabs.fantasybball.model.FantasyScoringTest" time="0.011"/>
+  <system-out><![CDATA[12:48:42.730 [Test worker] DEBUG org.springframework.web.client.RestTemplate - HTTP GET https://www.balldontlie.io/api/v1/stats?start_date=2022-04-19
+12:48:42.768 [Test worker] DEBUG org.springframework.web.client.RestTemplate - Accept=[application/json, application/*+json]
+12:48:43.093 [Test worker] DEBUG org.springframework.web.client.RestTemplate - Response 200 OK
+12:48:43.098 [Test worker] DEBUG org.springframework.web.client.RestTemplate - Reading to [com.detroitlabs.fantasybball.model.ParentStat]
+]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

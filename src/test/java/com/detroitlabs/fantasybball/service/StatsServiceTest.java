@@ -110,5 +110,4 @@ class StatsServiceTest {
         System.out.println(resultThree.getSeasonAvgStats().length);
     }
 
-
 }

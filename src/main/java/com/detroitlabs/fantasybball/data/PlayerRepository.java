@@ -18,38 +18,59 @@ public class PlayerRepository {
 
 
     private static ParentPlayerInfo buildPlayer;
-    private static ParentSeasonAvg buildStats;
-
     public static ArrayList<PlayerVariables> ALL_PLAYERS = new ArrayList<>();
-    public static ArrayList<PlayerVariables> ALL_STATS = new ArrayList<>();
+    PlayerVariables playerVariables;
+    private Integer[] team = new Integer[8]; //write a method to set player into index position
 
 
     public PlayerRepository() {//empty constructor FOR NOW
 
     }
 
-    public List<PlayerVariables> buildList() {
+    public void pullPlayers() {
         buildPlayer = StatsService.fetchPlayerInfo();
 
-        for (int i = 0; i < 100; i++) {
-            ALL_PLAYERS.add(new PlayerVariables(buildPlayer.getPlayerData()[i].getFirst_name() + " " + buildPlayer.getPlayerData()[i].getLast_name(),
-                    buildPlayer.getPlayerData()[i].getPosition(), buildPlayer.getPlayerData()[i].getTeam().getFull_name(),
-                    buildPlayer.getPlayerData()[i].getId()));
-        }
-        return ALL_PLAYERS;
     }
 
-    public List<PlayerVariables> buildStatAvgs() {
-        buildStats = StatsService.fetchSeasonAvg();
-        for (int i = 0; i < 100; i++) {
-            ALL_STATS.add(new PlayerVariables(buildStats.getSeasonAvgStats()[i].getPlayer_id()));
-
-        }
-        return ALL_STATS;
+    public Integer[] getTeam() {
+        return team;
     }
+
+    public void setTeam(Integer[] team) {
+        this.team = team;
+    }
+
+    //creates full list of players
+    public List<PlayerVariables> buildList() {
+        for (int i = 0; i < 100; i++) {
+            //exclude those that do not have position labeled, retired or irrelevant
+            if (!buildPlayer.getPlayerData()[i].getPosition().equals("")) {
+                ALL_PLAYERS.add(new PlayerVariables(buildPlayer.getPlayerData()[i].getFirst_name() + " " + buildPlayer.getPlayerData()[i].getLast_name(),
+                        buildPlayer.getPlayerData()[i].getPosition(), buildPlayer.getPlayerData()[i].getTeam().getFull_name(),
+                        buildPlayer.getPlayerData()[i].getId()));
+            }
+
+        } return ALL_PLAYERS;
+    }
+
+    //method to select player
+    public void selectPlayer() {
+        playerVariables.setSelected(true);
+    }
+
+    //if player is selected then adds to team list and removes from ALL_PLAYERS
+    public List<PlayerVariables> buildTeam() {
+        List<PlayerVariables> team = new ArrayList<>();
+        for (PlayerVariables playerVariables : ALL_PLAYERS) {
+            if (playerVariables.isSelected() == true) {
+                team.add(playerVariables);
+                ALL_PLAYERS.remove(playerVariables);
+            }
+        }
+        return team;
+    }
+
 }
 
-    /* API requires Array data type to get season averages, start with ArrayList
-    and then use the ArrayList.toArray method*/
 
 
