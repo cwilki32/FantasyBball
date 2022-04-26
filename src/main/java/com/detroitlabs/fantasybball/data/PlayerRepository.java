@@ -17,11 +17,10 @@ public class PlayerRepository {
     //method that creates a List of players from API and adds to player Repository... uses PlayerVariables to generate
 
 
-    private static ParentPlayerInfo buildPlayer;
+    private static List<ParentPlayerInfo> buildPlayer;
     public static ArrayList<PlayerVariables> ALL_PLAYERS = new ArrayList<>();
     PlayerVariables playerVariables;
     private Integer[] team = new Integer[8]; //write a method to set player into index position
-
 
     public PlayerRepository() {//empty constructor FOR NOW
 
@@ -29,7 +28,6 @@ public class PlayerRepository {
 
     public void pullPlayers() {
         buildPlayer = StatsService.fetchPlayerInfo();
-
     }
 
     public Integer[] getTeam() {
@@ -40,36 +38,22 @@ public class PlayerRepository {
         this.team = team;
     }
 
+
+    //todo need to iterate through 51 pages with 75 players per page
     //creates full list of players
     public List<PlayerVariables> buildList() {
-        for (int i = 0; i < 100; i++) {
-            //exclude those that do not have position labeled, retired or irrelevant
-            if (!buildPlayer.getPlayerData()[i].getPosition().equals("")) {
-                ALL_PLAYERS.add(new PlayerVariables(buildPlayer.getPlayerData()[i].getFirst_name() + " " + buildPlayer.getPlayerData()[i].getLast_name(),
-                        buildPlayer.getPlayerData()[i].getPosition(), buildPlayer.getPlayerData()[i].getTeam().getFull_name(),
-                        buildPlayer.getPlayerData()[i].getId()));
-            }
-
-        } return ALL_PLAYERS;
-    }
-
-    //method to select player
-    public void selectPlayer() {
-        playerVariables.setSelected(true);
-    }
-
-    //if player is selected then adds to team list and removes from ALL_PLAYERS
-    public List<PlayerVariables> buildTeam() {
-        List<PlayerVariables> team = new ArrayList<>();
-        for (PlayerVariables playerVariables : ALL_PLAYERS) {
-            if (playerVariables.isSelected() == true) {
-                team.add(playerVariables);
-                ALL_PLAYERS.remove(playerVariables);
+        for (int i = 0; i < 50; i++) {
+            for (int j = 0; j < 74; j++) {
+                if (!buildPlayer.get(i).getPlayerData()[j].getPosition().equals("")) {
+                    ALL_PLAYERS.add(new PlayerVariables(buildPlayer.get(i).getPlayerData()[j].getFirst_name() + " " + buildPlayer.get(i).getPlayerData()[j].getLast_name(),
+                            buildPlayer.get(i).getPlayerData()[j].getPosition(), buildPlayer.get(i).getPlayerData()[j].getTeam().getFull_name(),
+                            buildPlayer.get(i).getPlayerData()[j].getId()));
+                }
             }
         }
-        return team;
-    }
+        return ALL_PLAYERS;
 
+    }
 }
 
 
