@@ -12,5 +12,8 @@
 <div th:each="link, i: ${linkText}">
 <a th:href="@{'/PlayerLibrary/' + ${i.index}}" th:text="${link}"></a>
 </div>
+<br>
+<button>Submit Lineup</button>
+<p th:text="'Fantasy Score ' +${fantasyScore}"></p>
 </body>
 </html>

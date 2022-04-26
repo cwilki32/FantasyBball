@@ -30,6 +30,8 @@
 <!-- top scorers section-->
 <H1> Top 10 Scorers from Previous Game</H1>
 <div th:each="player: ${dailystat}">
+    <!-- placeholder for image as feature-->
+<!--    <img src="https://nba-players.herokuapp.com/players/curry/stephen"/>-->
     <span th:text="${player.name} + ' ' + ${player.pos} + ' ' + ${player.teamName} + ' ' + ${player.pts}"></span>
 </div>
 <!-- top rebounders section-->

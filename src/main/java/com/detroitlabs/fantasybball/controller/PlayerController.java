@@ -4,8 +4,8 @@ package com.detroitlabs.fantasybball.controller;
 import com.detroitlabs.fantasybball.data.DailyStatRepository;
 import com.detroitlabs.fantasybball.data.PlayerRepository;
 import com.detroitlabs.fantasybball.data.SeasonStatRepository;
-import com.detroitlabs.fantasybball.model.DailyStatsObject;
-import com.detroitlabs.fantasybball.model.PlayerVariables;
+import com.detroitlabs.fantasybball.model.*;
+import com.detroitlabs.fantasybball.service.StatsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -21,6 +21,9 @@ import static com.detroitlabs.fantasybball.data.SeasonStatRepository.ALL_STATS;
 
 @Controller
 public class PlayerController {
+
+    FantasyScoring fantasyScoring = new FantasyScoring();
+
 
     @Autowired
     private PlayerRepository playerRepository;
@@ -77,11 +80,25 @@ public class PlayerController {
         return "PlayerLibrary";
     }
 
+    //TODO fill out rest of season averages
+
+    @RequestMapping("/StatLibrary/{playerIndex}")
+    public String displayPlayerStats(@PathVariable int playerIndex, ModelMap modelMap) {
+        int id = ALL_PLAYERS.get(playerIndex).getId();
+        System.out.println(ALL_PLAYERS.get(playerIndex).getId());
+        ParentSeasonAvg buildStats = StatsService.fetchPlayerAvg(id);
+        double avgPts = buildStats.getSeasonAvgStats()[0].getPts();
+        double avgReb = buildStats.getSeasonAvgStats()[0].getReb();
+        modelMap.put("avgPts", avgPts);
+        modelMap.put("avgReb", avgReb);
+        return "StatLibrary";
+    }
+
+
 
     @RequestMapping("/seasonavg")
     public String statLibrary(ModelMap modelMap) {
         modelMap.put("SeasonStats", ALL_STATS);
-
         return "StatLibrary";
     }
 
@@ -104,10 +121,20 @@ public class PlayerController {
                 linkText.set(i, ALL_PLAYERS.get(playerRepository.getTeam()[i]).getName());
             }
         }
+        //TODO currently not working when change players,, probably need to pass in playerIndex
+        double teamFantasyScore=0;
+        for (int i=0; i<playerRepository.getTeam().length; i++) {
+            if (playerRepository.getTeam()[i] != null) {
+                double playerScore = fantasyScoring.calcScoreGame(DAILY_STATS.get(i).getPts(),
+                        DAILY_STATS.get(i).getReb(), DAILY_STATS.get(i).getAst(), DAILY_STATS.get(i).getBlk(),
+                        DAILY_STATS.get(i).getStl());
+                teamFantasyScore += playerScore;
+            }
+        }
         modelMap.put("linkText", linkText);
         modelMap.put("players", ALL_PLAYERS);
         modelMap.put("team", playerRepository.getTeam());
+        modelMap.put("fantasyScore", teamFantasyScore);
         return "MyTeam";
     }
-
 }
