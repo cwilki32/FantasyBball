@@ -1,5 +1,6 @@
 package com.detroitlabs.fantasybball.model;
 
+//used in DailyStatRepository
 public class DailyStatsObject implements Comparable<DailyStatsObject>{
 
     private String name;
@@ -13,6 +14,7 @@ public class DailyStatsObject implements Comparable<DailyStatsObject>{
     private String pos;
     private double fantasyScore;
 
+    //for fantasy scoring
     public DailyStatsObject(String name, int id, int pts, int reb, int ast, int blk, int stl, String teamName, String pos) {
         this.name = name;
         this.id = id;
@@ -21,6 +23,14 @@ public class DailyStatsObject implements Comparable<DailyStatsObject>{
         this.ast = ast;
         this.blk = blk;
         this.stl = stl;
+        this.teamName = teamName;
+        this.pos = pos;
+    }
+
+    //to generate library of players
+    public DailyStatsObject(int id, String name, String pos, String teamName) {
+        this.id = id;
+        this.name = name;
         this.teamName = teamName;
         this.pos = pos;
     }

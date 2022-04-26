@@ -14,19 +14,7 @@ import java.util.List;
 public class StatsService {
 
     //creating static variable that season averages api receives in GET request
-    private static int[] player_id = new int [500];
-
-    //TODO REMINDER - API has maximum of 60 requests per minute, do not exceed when designing code
-
-    public static List<ParentPlayerInfo> fetchPlayerInfo() {
-        RestTemplate restTemplate = new RestTemplate();
-        //TODO 3757 players needs 38 total pages.... copy-paste or for Loop? How to Paginate?
-        List<ParentPlayerInfo> allPages = new ArrayList<>();
-        for (int i = 1; i < 51; i++) {
-            allPages.add(restTemplate.getForObject("https://www.balldontlie.io/api/v1/players?page="+i+"&per_page=75", ParentPlayerInfo.class));
-        }
-        return allPages;
-    }
+    private static int[] player_id = new int[500];
 
 
     public static ParentStat fetchPlayerStats() {
@@ -38,14 +26,26 @@ public class StatsService {
     //TODO BUILD API FOR SEASON AVERAGES, requires 7 attempts for all players
 
     public static ParentSeasonAvg fetchSeasonAvg() {
-        for (int i = 0; i< player_id.length; i++){
-            player_id[i] = (i+1);
+        for (int i = 0; i < player_id.length; i++) {
+            player_id[i] = (i + 1);
         }
         //convert array to remove brackets (JSON input just needs a list of numbers)
-        String formattedPlayerId= Arrays.toString(player_id).replace("[", "").replace("]", "");
+        String formattedPlayerId = Arrays.toString(player_id).replace("[", "").replace("]", "");
 
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject("https://www.balldontlie.io/api/v1/season_averages?player_ids[]="+ formattedPlayerId, ParentSeasonAvg.class);
+        return restTemplate.getForObject("https://www.balldontlie.io/api/v1/season_averages?player_ids[]=" + formattedPlayerId, ParentSeasonAvg.class);
 
     }
-    }
+}
+//TODO REMINDER - API has maximum of 60 requests per minute, do not exceed when designing code
+
+//    public static List<ParentPlayerInfo> fetchPlayerInfo() {
+//        RestTemplate restTemplate = new RestTemplate();
+//        //TODO 3757 players needs 38 total pages.... copy-paste or for Loop? How to Paginate?
+//        //TODO decided to use dailyplayer stats to build library, ensures only actice players available
+//        List<ParentPlayerInfo> allPages = new ArrayList<>();
+//        for (int i = 1; i < 51; i++) {
+//            allPages.add(restTemplate.getForObject("https://www.balldontlie.io/api/v1/players?page="+i+"&per_page=75", ParentPlayerInfo.class));
+//        }
+//        return allPages;
+//    }

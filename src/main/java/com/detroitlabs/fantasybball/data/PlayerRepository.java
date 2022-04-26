@@ -1,8 +1,6 @@
 package com.detroitlabs.fantasybball.data;
 
-import com.detroitlabs.fantasybball.model.ParentPlayerInfo;
-import com.detroitlabs.fantasybball.model.ParentSeasonAvg;
-import com.detroitlabs.fantasybball.model.PlayerVariables;
+import com.detroitlabs.fantasybball.model.*;
 import com.detroitlabs.fantasybball.service.StatsService;
 import org.springframework.stereotype.Component;
 
@@ -13,21 +11,21 @@ import java.util.List;
 public class PlayerRepository {
     /*will create a method that will build a list of players to be included with website from API return -
     player name, position, and team name */
-    /*api returns max 100 per page, 3757 total players, 37 more pages to get all     */
-    //method that creates a List of players from API and adds to player Repository... uses PlayerVariables to generate
 
 
-    private static List<ParentPlayerInfo> buildPlayer;
-    public static ArrayList<PlayerVariables> ALL_PLAYERS = new ArrayList<>();
+    private static ParentStat buildPlayer;
+    public static ArrayList<DailyStatsObject> ALL_PLAYERS = new ArrayList<>();
+    public static List<String> linkText = new ArrayList<>();
+
+
     PlayerVariables playerVariables;
     private Integer[] team = new Integer[8]; //write a method to set player into index position
 
     public PlayerRepository() {//empty constructor FOR NOW
-
     }
 
     public void pullPlayers() {
-        buildPlayer = StatsService.fetchPlayerInfo();
+        buildPlayer = StatsService.fetchPlayerStats();
     }
 
     public Integer[] getTeam() {
@@ -38,24 +36,48 @@ public class PlayerRepository {
         this.team = team;
     }
 
-
-    //todo need to iterate through 51 pages with 75 players per page
-    //todo may need to refactor to only include players that are in playoffs/have daily stats
-    //creates full list of players
-    public List<PlayerVariables> buildList() {
-        for (int i = 0; i < 50; i++) {
-            for (int j = 0; j < 74; j++) {
-                if (!buildPlayer.get(i).getPlayerData()[j].getPosition().equals("")) {
-                    ALL_PLAYERS.add(new PlayerVariables(buildPlayer.get(i).getPlayerData()[j].getFirst_name() + " " + buildPlayer.get(i).getPlayerData()[j].getLast_name(),
-                            buildPlayer.get(i).getPlayerData()[j].getPosition(), buildPlayer.get(i).getPlayerData()[j].getTeam().getFull_name(),
-                            buildPlayer.get(i).getPlayerData()[j].getId()));
-                }
-            }
+    public List<DailyStatsObject> buildList() {
+        for (int i = 0; i < 82; i++) {
+            ALL_PLAYERS.add(new DailyStatsObject(buildPlayer.getStats()[i].getPlayer().getId(), buildPlayer.getStats()[i].getPlayer().getFirst_name() +
+                    " " + buildPlayer.getStats()[i].getPlayer().getLast_name(), buildPlayer.getStats()[i].getPlayer().getPosition(),
+                    buildPlayer.getStats()[i].getTeam().getFull_name()));
         }
         return ALL_PLAYERS;
-
     }
+
+    public List<String> buildLineup() {
+        linkText.add("Please select a Guard");
+        linkText.add("Please select a Guard");
+        linkText.add("Please select a Forward");
+        linkText.add("Please select a Forward");
+        linkText.add("Please select a Center");
+        linkText.add("Please select a Center");
+        linkText.add("Please select a Util");
+        linkText.add("Please select a Util");
+        return linkText;
+    }
+
+
 }
+//todo was used to iterate through 51 pages with 75 players per page
+//todo keeping this for future reference, realize it is not used --REFACTORED
+
+//creates full list of players
+// private static List<ParentPlayerInfo> buildPlayer;
+//    public static ArrayList<PlayerVariables> ALL_PLAYERS = new ArrayList<>();
+//    public List<PlayerVariables> buildList() {
+//        for (int i = 0; i < 50; i++) {
+//            for (int j = 0; j < 74; j++) {
+//                if (!buildPlayer.get(i).getPlayerData()[j].getPosition().equals("")) {
+//                    ALL_PLAYERS.add(new PlayerVariables(buildPlayer.get(i).getPlayerData()[j].getFirst_name() + " " + buildPlayer.get(i).getPlayerData()[j].getLast_name(),
+//                            buildPlayer.get(i).getPlayerData()[j].getPosition(), buildPlayer.get(i).getPlayerData()[j].getTeam().getFull_name(),
+//                            buildPlayer.get(i).getPlayerData()[j].getId()));
+//                }
+//            }
+//        }
+//        return ALL_PLAYERS;
+//
+//    }
 
 
 
