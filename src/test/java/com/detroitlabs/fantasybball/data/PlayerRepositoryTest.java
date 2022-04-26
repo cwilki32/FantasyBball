@@ -21,7 +21,7 @@ class PlayerRepositoryTest {
     public static void setUp() {
         //call API to return player info
 
-        buildPlayer = StatsService.fetchPlayerInfo();
+//        buildPlayer = StatsService.fetchPlayerInfo();
     }
 
 
