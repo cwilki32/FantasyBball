@@ -14,10 +14,13 @@ public class SeasonStatRepository {
     private static FantasyScoring fantasyScoring = new FantasyScoring();
 
 
+    public void pullStats() {
+        buildStats  = StatsService.fetchSeasonAvg();
+    }
+
 
 
     public List<SeasonStatsObject> buildStatAvgs() {
-        buildStats  = StatsService.fetchSeasonAvg();
         for (int i=0; i<100; i++) {
             ALL_STATS.add(new SeasonStatsObject(buildStats.getSeasonAvgStats()[i].getGames_played(),
                     buildStats.getSeasonAvgStats()[i].getPlayer_id(), buildStats.getSeasonAvgStats()[i].getReb(),

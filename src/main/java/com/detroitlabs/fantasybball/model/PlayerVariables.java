@@ -8,12 +8,14 @@ public class PlayerVariables {
     private String position;
     private String teamName;
     private int id;
+    private boolean isSelected;
 
     public PlayerVariables(String playerName, String position, String teamName, int id) {
         this.playerName = playerName;
         this.position = position;
         this.teamName = teamName;
         this.id = id;
+        isSelected = false;
     }
 
     //overloaded constructor to create arraylist of ids
@@ -52,4 +54,13 @@ public class PlayerVariables {
     public void setId(int id) {
         this.id = id;
     }
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
+    }
 }
+
