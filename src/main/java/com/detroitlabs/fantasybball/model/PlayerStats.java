@@ -1,5 +1,7 @@
 package com.detroitlabs.fantasybball.model;
 
+
+//used by ParentStat
 public class PlayerStats {
 
 
@@ -21,7 +23,15 @@ public class PlayerStats {
     private int pts;
     private int reb;
     private int stl;
+    private Team team;
 
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
+    }
 
     public int getId() {
         return id;

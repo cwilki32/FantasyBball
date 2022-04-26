@@ -21,7 +21,7 @@ class StatsServiceTest {
 
     @BeforeAll
     public static void setUp() {
-        result = StatsService.fetchPlayerInfo();
+//        result = StatsService.fetchPlayerInfo();
         resultTwo = StatsService.fetchPlayerStats();
         resultThree = StatsService.fetchSeasonAvg();
     }
@@ -118,5 +118,10 @@ class StatsServiceTest {
     @Test
     void testing_array_should_have_all_Players_James_Wiseman() {
         System.out.println(result.get(37).getPlayerData()[58].getFirst_name());
+    }
+
+    @Test
+    void should_return_position() {
+        System.out.println(resultTwo.getStats()[1].getPlayer().getPosition());
     }
 }

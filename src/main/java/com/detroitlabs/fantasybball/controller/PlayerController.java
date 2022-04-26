@@ -1,8 +1,10 @@
 package com.detroitlabs.fantasybball.controller;
 
 
+import com.detroitlabs.fantasybball.data.DailyStatRepository;
 import com.detroitlabs.fantasybball.data.PlayerRepository;
 import com.detroitlabs.fantasybball.data.SeasonStatRepository;
+import com.detroitlabs.fantasybball.model.DailyStatsObject;
 import com.detroitlabs.fantasybball.model.PlayerVariables;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.*;
 
+import static com.detroitlabs.fantasybball.data.DailyStatRepository.DAILY_STATS;
 import static com.detroitlabs.fantasybball.data.PlayerRepository.ALL_PLAYERS;
 import static com.detroitlabs.fantasybball.data.SeasonStatRepository.ALL_STATS;
 
@@ -24,14 +27,21 @@ public class PlayerController {
     @Autowired
     private SeasonStatRepository seasonStatRepository;
 
+    @Autowired
+    private DailyStatRepository dailyStatRepository;
+
     //placeholder for now will be replaced with dashboard
     @RequestMapping("/")
-    public String displayhome() {
+    public String displayhome(ModelMap modelMap) {
         //TODO move these to a single method to refactor/clean up .. here so library doesnt pull full list each selection
         playerRepository.pullPlayers();
         playerRepository.buildList();
         seasonStatRepository.pullStats();
         seasonStatRepository.buildStatAvgs();
+        //pull daily stats and display them
+        dailyStatRepository.pullDailyStats();
+        dailyStatRepository.buildDailyStats();
+        modelMap.put("dailystat", dailyStatRepository.sortDailyStatsByPoints());
         return "home";
     }
 

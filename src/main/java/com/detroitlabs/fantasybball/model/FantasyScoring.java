@@ -16,7 +16,7 @@ public class FantasyScoring {
 
     }
 
-    public double calcScoreGame(double pts, double reb, double ast, double blk, double stl) {
+    public double calcScoreGame(int pts, int reb, int ast, int blk, int stl) {
         double fantasyScore = (pts*1) + (reb*1.2) + (ast*1.5) + (blk*2) + (stl*2);
         return fantasyScore;
     }
