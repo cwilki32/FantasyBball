@@ -8,15 +8,7 @@
 <body>
 <!-- placeholder to hold lineup-->
 <!-- for each loop for player name at index and corresponding position/link-->
-<!--<a th:href="PlayerLibrary" th:text="${myTeam[0].playerName}">Please Select a Guard</a><br>-->
-<!--<a th:href="${'/PlayerLibrary/0'}">Please Select a Guard</a><br>-->
-<!--<a th:href="PlayerLibrary">Please Select a Guard</a><br>-->
-<!--<a th:href="PlayerLibrary">Please Select a Forward</a><br>-->
-<!--<a th:href="PlayerLibrary">Please Select a Forward</a><br>-->
-<!--<a th:href="PlayerLibrary">Please Select a Center</a><br>-->
-<!--<a th:href="PlayerLibrary">Please Select a Center</a><br>-->
-<!--<a th:href="PlayerLibrary">Please Select a Utility (any position)</a><br>-->
-<!--<a th:href="PlayerLibrary">Please Select a Utility (any position)</a><br>-->
+
 <div th:each="link, i: ${linkText}">
 <a th:href="@{'/PlayerLibrary/' + ${i.index}}" th:text="${link}"></a>
 </div>

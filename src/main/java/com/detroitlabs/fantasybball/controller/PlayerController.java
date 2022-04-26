@@ -16,6 +16,7 @@ import java.util.*;
 
 import static com.detroitlabs.fantasybball.data.DailyStatRepository.DAILY_STATS;
 import static com.detroitlabs.fantasybball.data.PlayerRepository.ALL_PLAYERS;
+import static com.detroitlabs.fantasybball.data.PlayerRepository.linkText;
 import static com.detroitlabs.fantasybball.data.SeasonStatRepository.ALL_STATS;
 
 @Controller
@@ -36,6 +37,8 @@ public class PlayerController {
         //TODO move these to a single method to refactor/clean up .. here so library doesnt pull full list each selection
         playerRepository.pullPlayers();
         playerRepository.buildList();
+        //import static linkText
+        playerRepository.buildLineup();
         seasonStatRepository.pullStats();
         seasonStatRepository.buildStatAvgs();
         //pull daily stats and display them
@@ -48,20 +51,20 @@ public class PlayerController {
     //include position index for player library, restrict available players to certain positions if haven't been selected
     @RequestMapping("/PlayerLibrary/{positionIndex}")
     public String playerLibrary(@PathVariable int positionIndex, ModelMap modelMap) {
-        Map<Integer, PlayerVariables> playerMap = new HashMap<>();
+        Map<Integer, DailyStatsObject> playerMap = new HashMap<>();
         for (int i = 0; i < ALL_PLAYERS.size(); i++) {
             if (!Arrays.asList(playerRepository.getTeam()).contains(i)) {
 
                 if (positionIndex == 0 || positionIndex == 1) {
-                    if (ALL_PLAYERS.get(i).getPosition().contains("G")) {
+                    if (ALL_PLAYERS.get(i).getPos().contains("G")) {
                         playerMap.put(i, ALL_PLAYERS.get(i));
                     }
                 } else if (positionIndex == 2 || positionIndex == 3) {
-                    if (ALL_PLAYERS.get(i).getPosition().contains("F")) {
+                    if (ALL_PLAYERS.get(i).getPos().contains("F")) {
                         playerMap.put(i, ALL_PLAYERS.get(i));
                     }
                 } else if (positionIndex == 4 || positionIndex == 5) {
-                    if (ALL_PLAYERS.get(i).getPosition().contains("C")) {
+                    if (ALL_PLAYERS.get(i).getPos().contains("C")) {
                         playerMap.put(i, ALL_PLAYERS.get(i));
                     }
                 } else {
@@ -85,15 +88,6 @@ public class PlayerController {
     //builds list that directs players to lists based on position, refactor the linkText creation
     @RequestMapping("/myteam")
     public String myTeam(ModelMap modelMap) {
-        List<String> linkText = new ArrayList<>();
-        linkText.add("Please select a Guard");
-        linkText.add("Please select a Guard");
-        linkText.add("Please select a Forward");
-        linkText.add("Please select a Forward");
-        linkText.add("Please select a Center");
-        linkText.add("Please select a Center");
-        linkText.add("Please select a Util");
-        linkText.add("Please select a Util");
         modelMap.put("linkText", linkText);
         modelMap.put("players", ALL_PLAYERS);
         return "MyTeam";
@@ -105,18 +99,9 @@ public class PlayerController {
     public String myTeam(@PathVariable int playerIndex, @PathVariable int positionIndex, ModelMap
             modelMap) {
         playerRepository.getTeam()[positionIndex] = playerIndex;
-        List<String> linkText = new ArrayList<>();
-        linkText.add("Please select a Guard");
-        linkText.add("Please select a Guard");
-        linkText.add("Please select a Forward");
-        linkText.add("Please select a Forward");
-        linkText.add("Please select a Center");
-        linkText.add("Please select a Center");
-        linkText.add("Please select a Util");
-        linkText.add("Please select a Util");
         for (int i = 0; i < playerRepository.getTeam().length; i++) {
             if (playerRepository.getTeam()[i] != null) {
-                linkText.set(i, ALL_PLAYERS.get(playerRepository.getTeam()[i]).getPlayerName());
+                linkText.set(i, ALL_PLAYERS.get(playerRepository.getTeam()[i]).getName());
             }
         }
         modelMap.put("linkText", linkText);
