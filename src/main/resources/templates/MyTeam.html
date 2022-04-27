@@ -47,9 +47,28 @@
         text-decoration: underline;
     }
 
-    #myDIV {
-        width: 100%;
-        text-align: center;
+/* collapsible button*/
+    .collapsible {
+        background-color: #777;
+        color: white;
+        cursor: pointer;
+        padding: 18px;
+        width: 20%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 15px;
+    }
+
+    .active, .collapsible:hover {
+        background-color: #777;
+    }
+
+    .content {
+        padding: 0 18px;
+        display: none;
+        overflow: hidden;
+        background-color: #FFFFFF;
     }
 
 </style>
@@ -92,9 +111,9 @@
     <br>
 
     <!-- need to hide until button is clicked-->
-    <button onclick="myFunction()" >Submit Lineup</button>
+    <button type="button" class="collapsible">Submit Lineup</button>
     <br>
-    <div id="myDIV" type="hidden" th:text="'Fantasy Score ' +${fantasyScore}"></div>
+    <div class="content" th:text="'Fantasy Score ' +${fantasyScore}"></div>
     <br>
     <div class="jss130"></div>
 
@@ -108,13 +127,19 @@
         var _nf0 = document.getElementById("n_0");
         _nf0.contentWindow.location.href = _nf0.src;
 
-        function myFunction() {
-            var x = document.getElementById("myDIV");
-            if (x.style.display === "none") {
-                x.style.display = "block";
-            } else {
-                x.style.display = "none";
-            }
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
+
+        for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.display === "block") {
+                    content.style.display = "none";
+                } else {
+                    content.style.display = "block";
+                }
+            });
         }
     </script>
 </div>
