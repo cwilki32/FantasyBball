@@ -5,8 +5,47 @@
     <link rel="stylesheet" th:href="@{/app.css}"/>
     <title>Player Library</title>
 </head>
-<body>
+<style>
+    .grid-container {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        grid-gap: 10px;
+        background-color: #2196F3;
+        padding: 10px;
+    }
 
+    .grid-container > div {
+        background-color: #ddd;
+        text-align: center;
+        padding: 20px 0;
+        font-size: 20px;
+    }
+
+    .item1 {
+        grid-row: 1 / 3;
+        font-size: 30px;
+    }
+</style>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="topnav">
+                <a class="navbar-brand" href="/">
+                    <img class="home-logo" src="/images/league-25-color@3x.png" alt="Logo"/>
+                </a>
+                <div class="topnav-right">
+                    <a th:href="@{/}">Home</a>
+                    <a th:href="@{/myteam}">Build Team</a>
+                    <a class="active" th:href="@{/PlayerLibrary}">Player Library</a>
+                    <a th:href="@{/messageboard}">Message Board</a>
+                    <a th:href="@{/}">Feature 2</a>
+                    <a th:href="@{/}">Feature 3</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
 <!--<div th:each="player: ${SeasonStats}">-->
 <!--    <span th:text="${player.id}"> </span>-->
 <!--<div th:each="playerStat: ${playerStats}">-->
@@ -14,12 +53,20 @@
 <!--      + ' ' + ${playerStat.reb} + ' ' + ${playerStat.ast} + ' ' + ${playerStat.blk} + ' ' + ${playerStat.stl}">-->
 
 <div>
-    <h3>Per Game Averages</h3>
-    <span th:text="'Points ' +${avgPts}"></span>
-    <span th:text="'Rebounds ' +${avgReb}"></span>
-    <span th:text="'Assists ' + ${avgAst}"></span>
-    <span th:text="'Blocks ' + ${avgBlk}"></span>
-    <span th:text="'Steals ' + ${avgStl}"></span>
+    <h2>Per Game Averages</h2>
+    <div class="grid-container">
+        <div class="item1" th:text="'Points ' +${avgPts}"></div>
+        <div class="item2" th:text="'Rebounds ' +${avgReb}"></div>
+        <div class="item3" th:text="'Assists ' + ${avgAst}"></div>
+        <div class="item4" th:text="'Blocks ' + ${avgBlk}"></div>
+        <div class="item5" th:text="'Steals ' + ${avgStl}"></div>
+
+    </div>
+    <span ></span>
+    <span ></span>
+    <span ></span>
+    <span ></span>
+    <span ></span>
 
 </div>
 </body>

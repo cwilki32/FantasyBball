@@ -5,19 +5,114 @@
     <link rel="stylesheet" th:href="@{/app.css}"/>
     <title>My Team</title>
 </head>
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 25%;
+        border: 1px solid black;
+
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        padding: 8px;
+        text-align: center;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+
+    .center {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    a:link {
+        color: gray;
+        background-color: transparent;
+        text-decoration: none;
+    }
+
+    a:visited {
+        color: gray;
+        background-color: transparent;
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: blue;
+        background-color: transparent;
+        text-decoration: underline;
+    }
+
+    #myDIV {
+        width: 100%;
+        text-align: center;
+    }
+
+</style>
 <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="topnav">
+                <a class="navbar-brand" href="/">
+                    <img class="home-logo" src="/images/league-25-color@3x.png" alt="Logo"/>
+                </a>
+                <div class="topnav-right">
+                    <a th:href="@{/}">Home</a>
+                    <a class="active" th:href="@{/myteam}">Build Team</a>
+                    <a th:href="@{/PlayerLibrary}">Player Library</a>
+                    <a th:href="@{/messageboard}">Message Board</a>
+                    <a th:href="@{/}">Feature 2</a>
+                    <a th:href="@{/}">Feature 3</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
 <!-- placeholder to hold lineup-->
 <!-- for each loop for player name at index and corresponding position/link-->
+<h2>My Lineup</h2>
+<div style="text-align: center">
+    <table class="center">
+        <tr>
+            <th>Player Name</th>
+        </tr>
+        <td>
+            <div th:each="link, i: ${linkText}">
+                <a th:href="@{'/PlayerLibrary/' + ${i.index}}" th:text="${link}"></a>
+                <br>
+                <br>
+            </div>
+        </td>
+    </table>
+    <br>
+    <!-- need to hide until button is clicked-->
+    <button onclick="myFunction()" >Submit Lineup</button>
+    <div id="myDIV" type="hidden" th:text="'Fantasy Score ' +${fantasyScore}"></div>
 
-<div th:each="link, i: ${linkText}">
-<a th:href="@{'/PlayerLibrary/' + ${i.index}}" th:text="${link}"></a>
+
+    <!-- section to place widget to review fantasy player expectations-->
+    <iframe id="n_0" src="https://www.numberfire.com/external/widgets/nba/game-projections/" width="600"
+            height="300"></iframe>
+    <br/>
+    <div style="font-size: 12px; margin: 10px 0"></div>
+    <script>
+        var _nf0 = document.getElementById("n_0");
+        _nf0.contentWindow.location.href = _nf0.src;
+
+        function myFunction() {
+            var x = document.getElementById("myDIV");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+    </script>
 </div>
-<br>
-<button>Submit Lineup</button>
-<p th:text="'Fantasy Score ' +${fantasyScore}"></p>
-
-<!-- section to place widget to review fantasy player expectations-->
-<iframe id="n_0" src="https://www.numberfire.com/external/widgets/nba/game-projections/" width="600" height="300"></iframe><br /><div style="font-size: 12px; margin: 10px 0"><a href="https://www.numberfire.com/nba/daily-fantasy/daily-basketball-projections">Daily Fantasy Basketball Projections</a> by <a href="https://www.numberfire.com">numberFire</a></div> <script>var _nf0 = document.getElementById("n_0");_nf0.contentWindow.location.href = _nf0.src;</script>
-
 </body>
 </html>

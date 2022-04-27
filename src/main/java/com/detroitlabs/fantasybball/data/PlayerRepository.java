@@ -50,14 +50,14 @@ public class PlayerRepository {
     }
 
     public List<String> buildLineup() {
-        linkText.add("Please select a Guard");
-        linkText.add("Please select a Guard");
-        linkText.add("Please select a Forward");
-        linkText.add("Please select a Forward");
-        linkText.add("Please select a Center");
-        linkText.add("Please select a Center");
-        linkText.add("Please select a Util");
-        linkText.add("Please select a Util");
+        linkText.add("Select a Guard (G)");
+        linkText.add("Select a Guard (G)");
+        linkText.add("Select a Forward (F)");
+        linkText.add("Select a Forward (F)");
+        linkText.add("Select a Center (C)");
+        linkText.add("Select a Center (C)");
+        linkText.add("Select a Util (G|F|C)");
+        linkText.add("Select a Util (G|F|C)");
         return linkText;
     }
 

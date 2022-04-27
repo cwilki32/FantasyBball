@@ -5,10 +5,50 @@
     <link rel="stylesheet" th:href="@{/app.css}"/>
     <title>Player Library</title>
 </head>
+<style>
+    a:link {
+        color: gray;
+        background-color: transparent;
+        text-decoration: none;
+    }
+
+    a:visited {
+        color: gray;
+        background-color: transparent;
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: blue;
+        background-color: transparent;
+        text-decoration: underline;
+    }
+</style>
 <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="topnav">
+                <a class="navbar-brand" href="/">
+                    <img class="home-logo" src="/images/league-25-color@3x.png" alt="Logo"/>
+                </a>
+                <div class="topnav-right">
+                    <a th:href="@{/}">Home</a>
+                    <a th:href="@{/myteam}">Build Team</a>
+                    <a class="active" th:href="@{/PlayerLibrary}">Player Library</a>
+                    <a th:href="@{/messageboard}">Message Board</a>
+                    <a th:href="@{/}">Feature 2</a>
+                    <a th:href="@{/}">Feature 3</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
 
 <div th:each="player: ${players}">
-    <img th:src="@{'https://nba-players.herokuapp.com/players/'+ ${player.value.getLastName()} + '/' + ${player.value.getFirstName()}}" width="50"/>
+    <!-- onerror adds ability to replace with stock photo if one is not found by API-->
+    <img th:src="@{'https://nba-players.herokuapp.com/players/'+ ${player.value.getLastName()} + '/' + ${player.value.getFirstName()}}"
+         width="50" onerror="this.src='https://us.123rf.com/450wm/martialred/martialred1608/martialred160800020/61263273-male-user-account-profile-circle-flat-icon-for-apps-and-websites.jpg?ver=6'"/>
     <span th:text="${player.value.getName()}+ ' ' + ${player.value.getPos()} + ' ' + ${player.value.getTeamName()}">
     </span>
 <!--    <button type="submit" th:onclick="${player.setSelected(true)}" href="/myteam">Add to Team</button>-->
