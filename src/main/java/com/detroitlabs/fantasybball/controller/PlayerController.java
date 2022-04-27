@@ -44,7 +44,7 @@ public class PlayerController {
         playerRepository.buildLineup();
         seasonStatRepository.pullStats();
         seasonStatRepository.buildStatAvgs();
-        //pull daily stats and display them
+        //pull daily stats and display them - top 10 scorers
         dailyStatRepository.pullDailyStats();
         dailyStatRepository.buildDailyStats();
         modelMap.put("dailystat", dailyStatRepository.sortDailyStatsByPoints());
@@ -89,8 +89,14 @@ public class PlayerController {
         ParentSeasonAvg buildStats = StatsService.fetchPlayerAvg(id);
         double avgPts = buildStats.getSeasonAvgStats()[0].getPts();
         double avgReb = buildStats.getSeasonAvgStats()[0].getReb();
+        double avgAst = buildStats.getSeasonAvgStats()[0].getAst();
+        double avgBlk = buildStats.getSeasonAvgStats()[0].getBlk();
+        double avgStl = buildStats.getSeasonAvgStats()[0].getStl();
         modelMap.put("avgPts", avgPts);
         modelMap.put("avgReb", avgReb);
+        modelMap.put("avgAst", avgAst);
+        modelMap.put("avgBlk", avgBlk);
+        modelMap.put("avgStl", avgStl);
         return "StatLibrary";
     }
 
@@ -136,5 +142,10 @@ public class PlayerController {
         modelMap.put("team", playerRepository.getTeam());
         modelMap.put("fantasyScore", teamFantasyScore);
         return "MyTeam";
+    }
+
+    @RequestMapping ("/messageboard")
+    public String displayMessageBoard() {
+        return "MessageBoard";
     }
 }
