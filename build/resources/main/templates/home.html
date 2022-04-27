@@ -30,6 +30,9 @@
 <!-- top scorers section-->
 <H1> Top 10 Scorers from Previous Game</H1>
 <div th:each="player: ${dailystat}">
+    <!-- placeholder for image as feature-->
+<!--    <img src="https://nba-players.herokuapp.com/players/Embiid/Joel">-->
+    <img th:src="@{'https://nba-players.herokuapp.com/players/'+ ${player.lastName} + '/' + ${player.firstName}}" width="50"/>
     <span th:text="${player.name} + ' ' + ${player.pos} + ' ' + ${player.teamName} + ' ' + ${player.pts}"></span>
 </div>
 <!-- top rebounders section-->
@@ -39,6 +42,9 @@
 <!-- top blocks section-->
 
 <!-- top steals section-->
+
+<!--placeholder for fantasy player widget-->
+<iframe id="n_0" src="https://www.numberfire.com/external/widgets/nba/fanduel-values" width="600" height="300"></iframe><br /><div style="font-size: 12px; margin: 10px 0"><a href="https://www.numberfire.com/nba/daily-fantasy/daily-basketball-projections">Daily Fantasy Basketball Projections</a> by <a href="https://www.numberfire.com">numberFire</a></div> <script>var _nf0 = document.getElementById("n_0");_nf0.contentWindow.location.href = _nf0.src;</script>
 
 
 <!--placeholder for NBA scoreboard, end up placing below-->

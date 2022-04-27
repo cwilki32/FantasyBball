@@ -3,6 +3,8 @@ package com.detroitlabs.fantasybball.model;
 //used in DailyStatRepository
 public class DailyStatsObject implements Comparable<DailyStatsObject>{
 
+    private String firstName;
+    private String lastName;
     private String name;
     private int id;
     private int pts;
@@ -15,8 +17,10 @@ public class DailyStatsObject implements Comparable<DailyStatsObject>{
     private double fantasyScore;
 
     //for fantasy scoring
-    public DailyStatsObject(String name, int id, int pts, int reb, int ast, int blk, int stl, String teamName, String pos) {
-        this.name = name;
+    public DailyStatsObject(String name, String firstName, String lastName, int id, int pts, int reb, int ast, int blk, int stl, String teamName, String pos) {
+        this.name=name;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.id = id;
         this.pts = pts;
         this.reb = reb;
@@ -28,13 +32,22 @@ public class DailyStatsObject implements Comparable<DailyStatsObject>{
     }
 
     //to generate library of players
-    public DailyStatsObject(int id, String name, String pos, String teamName) {
+    public DailyStatsObject(int id, String name, String firstName, String lastName, String pos, String teamName) {
         this.id = id;
         this.name = name;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.teamName = teamName;
         this.pos = pos;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public double getFantasyScore() {
         return fantasyScore;
@@ -44,12 +57,20 @@ public class DailyStatsObject implements Comparable<DailyStatsObject>{
         this.fantasyScore = fantasyScore;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public int getId() {

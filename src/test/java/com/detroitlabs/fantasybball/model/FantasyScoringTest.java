@@ -32,4 +32,15 @@ class FantasyScoringTest {
         assertEquals( 19.6, result);
 
     }
+
+    @Test
+    void scoring_yesterday_game_multiplePlayers() {
+        double teamFantasyScore = 0;
+        for (int i=0; i < 8; i++) {
+            double playerScore = fantasyScoring.calcScoreGame(buildPlayer.getStats()[i].getPts(), buildPlayer.getStats()[i].getReb()
+                    , buildPlayer.getStats()[i].getAst(), buildPlayer.getStats()[i].getBlk(), buildPlayer.getStats()[1].getStl());
+            teamFantasyScore += playerScore;
+        }
+        System.out.println(teamFantasyScore);
+    }
 }

@@ -8,10 +8,13 @@
 <body>
 
 <div th:each="player: ${players}">
-    <span th:text="${player.value.getName()} + ' ' + ${player.value.getPos()} + ' ' + ${player.value.getTeamName()}">
+    <img th:src="@{'https://nba-players.herokuapp.com/players/'+ ${player.value.getLastName()} + '/' + ${player.value.getFirstName()}}" width="50"/>
+    <span th:text="${player.value.getName()}+ ' ' + ${player.value.getPos()} + ' ' + ${player.value.getTeamName()}">
     </span>
 <!--    <button type="submit" th:onclick="${player.setSelected(true)}" href="/myteam">Add to Team</button>-->
     <a th:href="@{'/myteam/' + ${player.key} + '/' + ${positionIndex}}"> Add to Team</a>
+    <!-- button to view season stats-->
+    <a th:href="@{'/StatLibrary/' + ${player.key}}"> View Season Stats</a>
 </div>
 </body>
 </html>

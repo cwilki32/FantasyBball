@@ -23,8 +23,8 @@ public class DailyStatRepository {
     //builds list of Players and sorts in descending order for Pts
     public List<DailyStatsObject> buildDailyStats() {
         for (int i = 0; i < 82; i++) {
-            DAILY_STATS.add(new DailyStatsObject(buildDashboard.getStats()[i].getPlayer().getFirst_name() + " " +
-                    buildDashboard.getStats()[i].getPlayer().getLast_name(), buildDashboard.getStats()[i].getId(),
+            DAILY_STATS.add(new DailyStatsObject(buildDashboard.getStats()[i].getPlayer().getFirst_name() + " " + buildDashboard.getStats()[i].getPlayer().getLast_name(),
+                    buildDashboard.getStats()[i].getPlayer().getFirst_name(), buildDashboard.getStats()[i].getPlayer().getLast_name(), buildDashboard.getStats()[i].getId(),
                     buildDashboard.getStats()[i].getPts(), buildDashboard.getStats()[i].getReb(), buildDashboard.getStats()[i].getAst(),
                     buildDashboard.getStats()[i].getBlk(), buildDashboard.getStats()[i].getStl(), buildDashboard.getStats()[i].getTeam().getFull_name(),
                     buildDashboard.getStats()[i].getPlayer().getPosition()));

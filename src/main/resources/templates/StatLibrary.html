@@ -9,12 +9,19 @@
 
 <!--<div th:each="player: ${SeasonStats}">-->
 <!--    <span th:text="${player.id}"> </span>-->
-<div th:each="playerStat: ${SeasonStats}">
-    <span th:text="${playerStat.player_id} + ' ' + ${playerStat.games_played} + ' ' + ${playerStat.pts}
-      + ' ' + ${playerStat.reb} + ' ' + ${playerStat.ast} + ' ' + ${playerStat.blk} + ' ' + ${playerStat.stl}">
+<!--<div th:each="playerStat: ${playerStats}">-->
+<!--    <span th:text="${playerStat.player_id} + ' ' + ${playerStat.games_played} + ' ' + ${playerStat.pts}-->
+<!--      + ' ' + ${playerStat.reb} + ' ' + ${playerStat.ast} + ' ' + ${playerStat.blk} + ' ' + ${playerStat.stl}">-->
 
-    </span>
+<div>
+    <h3>Per Game Averages</h3>
+    <span th:text="'Points ' +${avgPts}"></span>
+    <span th:text="'Rebounds ' +${avgReb}"></span>
+    <span th:text="'Assists ' + ${avgAst}"></span>
+    <span th:text="'Blocks ' + ${avgBlk}"></span>
+    <span th:text="'Steals ' + ${avgStl}"></span>
 
 </div>
 </body>
+
 </html>

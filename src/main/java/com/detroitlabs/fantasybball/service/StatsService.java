@@ -24,6 +24,7 @@ public class StatsService {
     }
 
     //TODO BUILD API FOR SEASON AVERAGES, requires 7 attempts for all players
+    //REFACTORING to include one player returned
 
     public static ParentSeasonAvg fetchSeasonAvg() {
         for (int i = 0; i < player_id.length; i++) {
@@ -35,6 +36,12 @@ public class StatsService {
         RestTemplate restTemplate = new RestTemplate();
         return restTemplate.getForObject("https://www.balldontlie.io/api/v1/season_averages?player_ids[]=" + formattedPlayerId, ParentSeasonAvg.class);
 
+    }
+
+
+    public static ParentSeasonAvg fetchPlayerAvg(int id) {
+    RestTemplate restTemplate = new RestTemplate();
+            return restTemplate.getForObject("https://www.balldontlie.io/api/v1/season_averages?player_ids[]="+ id, ParentSeasonAvg.class);
     }
 }
 //TODO REMINDER - API has maximum of 60 requests per minute, do not exceed when designing code

@@ -21,7 +21,7 @@ public class PlayerRepository {
     PlayerVariables playerVariables;
     private Integer[] team = new Integer[8]; //write a method to set player into index position
 
-    public PlayerRepository() {//empty constructor FOR NOW
+    public PlayerRepository() {
     }
 
     public void pullPlayers() {
@@ -38,9 +38,13 @@ public class PlayerRepository {
 
     public List<DailyStatsObject> buildList() {
         for (int i = 0; i < 82; i++) {
-            ALL_PLAYERS.add(new DailyStatsObject(buildPlayer.getStats()[i].getPlayer().getId(), buildPlayer.getStats()[i].getPlayer().getFirst_name() +
-                    " " + buildPlayer.getStats()[i].getPlayer().getLast_name(), buildPlayer.getStats()[i].getPlayer().getPosition(),
-                    buildPlayer.getStats()[i].getTeam().getFull_name()));
+            ALL_PLAYERS.add(new DailyStatsObject(buildPlayer.getStats()[i].getPlayer().getFirst_name() + " " +
+                    buildPlayer.getStats()[i].getPlayer().getLast_name(),
+                    buildPlayer.getStats()[i].getPlayer().getFirst_name(),
+                    buildPlayer.getStats()[i].getPlayer().getLast_name(), buildPlayer.getStats()[i].getPlayer().getId(),
+                    buildPlayer.getStats()[i].getPts(), buildPlayer.getStats()[i].getReb(), buildPlayer.getStats()[i].getAst(),
+                    buildPlayer.getStats()[i].getBlk(), buildPlayer.getStats()[i].getStl(), buildPlayer.getStats()[i].getTeam().getFull_name(),
+                    buildPlayer.getStats()[i].getPlayer().getPosition()));
         }
         return ALL_PLAYERS;
     }
@@ -56,6 +60,7 @@ public class PlayerRepository {
         linkText.add("Please select a Util");
         return linkText;
     }
+
 
 
 }

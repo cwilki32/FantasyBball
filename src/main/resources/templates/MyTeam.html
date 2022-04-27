@@ -12,5 +12,12 @@
 <div th:each="link, i: ${linkText}">
 <a th:href="@{'/PlayerLibrary/' + ${i.index}}" th:text="${link}"></a>
 </div>
+<br>
+<button>Submit Lineup</button>
+<p th:text="'Fantasy Score ' +${fantasyScore}"></p>
+
+<!-- section to place widget to review fantasy player expectations-->
+<iframe id="n_0" src="https://www.numberfire.com/external/widgets/nba/game-projections/" width="600" height="300"></iframe><br /><div style="font-size: 12px; margin: 10px 0"><a href="https://www.numberfire.com/nba/daily-fantasy/daily-basketball-projections">Daily Fantasy Basketball Projections</a> by <a href="https://www.numberfire.com">numberFire</a></div> <script>var _nf0 = document.getElementById("n_0");_nf0.contentWindow.location.href = _nf0.src;</script>
+
 </body>
 </html>

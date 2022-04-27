@@ -17,6 +17,7 @@ class StatsServiceTest {
     private static List<ParentPlayerInfo> result;
     private static ParentStat resultTwo;
     private static ParentSeasonAvg resultThree;
+    private static ParentSeasonAvg resultFour;
 
 
     @BeforeAll
@@ -24,6 +25,7 @@ class StatsServiceTest {
 //        result = StatsService.fetchPlayerInfo();
         resultTwo = StatsService.fetchPlayerStats();
         resultThree = StatsService.fetchSeasonAvg();
+
     }
 
     //TESTING FOR PLAYER INFORMATION
@@ -123,5 +125,12 @@ class StatsServiceTest {
     @Test
     void should_return_position() {
         System.out.println(resultTwo.getStats()[1].getPlayer().getPosition());
+    }
+
+    @Test
+    void should_return_specified_id_stats () {
+        resultFour = StatsService.fetchPlayerAvg(15);
+        System.out.println(resultFour.getSeasonAvgStats()[0].getPlayer_id() + " " +
+                resultFour.getSeasonAvgStats()[0].getPts());
     }
 }
