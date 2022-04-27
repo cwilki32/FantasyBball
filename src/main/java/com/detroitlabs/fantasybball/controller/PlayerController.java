@@ -128,12 +128,13 @@ public class PlayerController {
             }
         }
         //TODO currently not working when change players,, probably need to pass in playerIndex
+        //get(playerIndex) seems to be doing more than get(i) in calculation
         double teamFantasyScore=0;
         for (int i=0; i<playerRepository.getTeam().length; i++) {
             if (playerRepository.getTeam()[i] != null) {
-                double playerScore = fantasyScoring.calcScoreGame(DAILY_STATS.get(i).getPts(),
-                        DAILY_STATS.get(i).getReb(), DAILY_STATS.get(i).getAst(), DAILY_STATS.get(i).getBlk(),
-                        DAILY_STATS.get(i).getStl());
+                double playerScore = fantasyScoring.calcScoreGame(DAILY_STATS.get(playerIndex).getPts(),
+                        DAILY_STATS.get(playerIndex).getReb(), DAILY_STATS.get(playerIndex).getAst(), DAILY_STATS.get(playerIndex).getBlk(),
+                        DAILY_STATS.get(playerIndex).getStl());
                 teamFantasyScore += playerScore;
             }
         }
