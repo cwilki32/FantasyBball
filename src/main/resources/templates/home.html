@@ -57,7 +57,7 @@
                     <img class="home-logo" src="/images/league-25-color@3x.png" alt="Logo"/>
                 </a>
                 <div class="topnav-right">
-                    <a class="active" th:href="@{/}">Home</a>
+                    <a class="active" th:href="@{/}">Dashboard</a>
                     <a th:href="@{/myteam}">Build Team</a>
                     <a th:href="@{/PlayerLibrary}">Player Library</a>
                     <a th:href="@{/messageboard}">Message Board</a>
@@ -68,7 +68,6 @@
         </div>
     </div>
 </nav>
-
 
 <!-- top scorers section-->
 <H2> Top 10 Scorers from Previous Game</H2>
@@ -81,6 +80,8 @@
         <span th:text="${player.name} + ' ' + ${player.pos} + ' ' + ${player.teamName} + ' - ' + ${player.pts} + ' pts'"></span>
     </div>
 </div>
+<br>
+<div class="jss130"></div>
 <!-- top rebounders section, not used yet-->
 <!-- top assists section, not used yet-->
 <!-- top blocks section, not used yet-->
@@ -88,7 +89,8 @@
 <!-- widget/iframe to hold upcoming games-->
 <H2> Upcoming Games</H2>
 <iframe src="https://live.numberfire.com/nba?d=29&m=4&y=2022&site=fanduel" width="1000" height="500"></iframe>
-
+<br>
+<div class="jss130"></div>
 
 <!--placeholder for fantasy player widget-->
 <H2>Fantasy Projections</H2>
@@ -98,22 +100,22 @@
 <div style="font-size: 12px; margin: 10px 0"></div>
 <script>var _nf0 = document.getElementById("n_0");
 _nf0.contentWindow.location.href = _nf0.src;</script>
-
+<br>
+<div class="jss130"></div>
 
 <!--placeholder for NBA scoreboard, end up placing below-->
-<H2>Conference Standings</H2>
+<H2 style="margin-bottom: 0px">Conference Standings</H2>
 <div class="row">
     <div class="column">
-        <h2 style="text-align: center">Western Conference</h2>
+        <h3 style="text-align: center">Western Conference</h3>
         <iframe frameborder="0" scrolling="no" width="520" height="500"
                 src="https://statsdream.com/basketball/usa/nba/iframe/?type=table&sport=4&country=231&template=824&conference=Western Conference&team=&timezone=Pacific/Midway&time=24&po=1&ma=1&wi=1&los=1&pts=0&ng=1&form=1&width=520&height=700&font=Verdana&fs=12&lh=22&bg=FFFFFF&fc=333333&logo=1&tlink=1&ths=1&thb=1&thba=FFFFFF&thc=000000&bc=dddddd&hob=f5f5f5&hobc=ebe7e7&lc=333333&sh=1&hfb=1&hbc=3bafda&hfc=FFFFFF"></iframe>
     </div>
     <div class="column">
-        <h2 style="text-align: center">Eastern Conference</h2>
+        <h3 style="text-align: center">Eastern Conference</h3>
         <iframe frameborder="0" scrolling="no" width="520" height="500"
                 src="https://statsdream.com/basketball/usa/nba/iframe/?type=table&sport=4&country=231&template=824&conference=Eastern Conference&team=&timezone=Pacific/Midway&time=24&po=1&ma=1&wi=1&los=1&pts=0&ng=1&form=1&width=520&height=700&font=Verdana&fs=12&lh=22&bg=FFFFFF&fc=333333&logo=1&tlink=1&ths=1&thb=1&thba=FFFFFF&thc=000000&bc=dddddd&hob=f5f5f5&hobc=ebe7e7&lc=333333&sh=1&hfb=1&hbc=3bafda&hfc=FFFFFF"></iframe>
     </div>
 </div>
-
 </body>
 </html>

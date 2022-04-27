@@ -62,7 +62,7 @@
                     <img class="home-logo" src="/images/league-25-color@3x.png" alt="Logo"/>
                 </a>
                 <div class="topnav-right">
-                    <a th:href="@{/}">Home</a>
+                    <a th:href="@{/}">Dashboard</a>
                     <a class="active" th:href="@{/myteam}">Build Team</a>
                     <a th:href="@{/PlayerLibrary}">Player Library</a>
                     <a th:href="@{/messageboard}">Message Board</a>
@@ -75,7 +75,7 @@
 </nav>
 <!-- placeholder to hold lineup-->
 <!-- for each loop for player name at index and corresponding position/link-->
-<h2>My Lineup</h2>
+<h2 style="margin-bottom: 0px">My Lineup</h2>
 <div style="text-align: center">
     <table class="center">
         <tr>
@@ -90,12 +90,16 @@
         </td>
     </table>
     <br>
+
     <!-- need to hide until button is clicked-->
     <button onclick="myFunction()" >Submit Lineup</button>
+    <br>
     <div id="myDIV" type="hidden" th:text="'Fantasy Score ' +${fantasyScore}"></div>
-
+    <br>
+    <div class="jss130"></div>
 
     <!-- section to place widget to review fantasy player expectations-->
+    <H3>Player Projections</H3>
     <iframe id="n_0" src="https://www.numberfire.com/external/widgets/nba/game-projections/" width="600"
             height="300"></iframe>
     <br/>

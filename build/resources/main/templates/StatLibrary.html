@@ -35,7 +35,7 @@
                     <img class="home-logo" src="/images/league-25-color@3x.png" alt="Logo"/>
                 </a>
                 <div class="topnav-right">
-                    <a th:href="@{/}">Home</a>
+                    <a th:href="@{/}">Dashboard</a>
                     <a th:href="@{/myteam}">Build Team</a>
                     <a class="active" th:href="@{/PlayerLibrary}">Player Library</a>
                     <a th:href="@{/messageboard}">Message Board</a>
@@ -46,12 +46,6 @@
         </div>
     </div>
 </nav>
-<!--<div th:each="player: ${SeasonStats}">-->
-<!--    <span th:text="${player.id}"> </span>-->
-<!--<div th:each="playerStat: ${playerStats}">-->
-<!--    <span th:text="${playerStat.player_id} + ' ' + ${playerStat.games_played} + ' ' + ${playerStat.pts}-->
-<!--      + ' ' + ${playerStat.reb} + ' ' + ${playerStat.ast} + ' ' + ${playerStat.blk} + ' ' + ${playerStat.stl}">-->
-
 <div>
     <h2>Per Game Averages</h2>
     <div class="grid-container">
