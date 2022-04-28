@@ -77,14 +77,20 @@ public class PlayerController {
     @RequestMapping("/StatLibrary/{playerIndex}")
     public String displayPlayerStats(@PathVariable int playerIndex, ModelMap modelMap) {
         int id = ALL_PLAYERS.get(playerIndex).getId();
+        String playerName = ALL_PLAYERS.get(playerIndex).getName();
+        System.out.println(ALL_PLAYERS.get(playerIndex).getName());
         System.out.println(ALL_PLAYERS.get(playerIndex).getId());
         //TODO opportunity to change buildStats into a method under ParentSeasonAvg
         ParentSeasonAvg buildStats = StatsService.fetchPlayerAvg(id);
+
         double avgPts = buildStats.getSeasonAvgStats()[0].getPts();
         double avgReb = buildStats.getSeasonAvgStats()[0].getReb();
         double avgAst = buildStats.getSeasonAvgStats()[0].getAst();
         double avgBlk = buildStats.getSeasonAvgStats()[0].getBlk();
         double avgStl = buildStats.getSeasonAvgStats()[0].getStl();
+        double avgFantasyScore= fantasyScoring.calcScoreAvg( avgPts, avgReb,  avgAst,  avgBlk,  avgStl);
+        modelMap.put("name", playerName);
+        modelMap.put("avgFantasyScore", avgFantasyScore);
         modelMap.put("avgPts", avgPts);
         modelMap.put("avgReb", avgReb);
         modelMap.put("avgAst", avgAst);

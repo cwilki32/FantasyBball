@@ -10,8 +10,10 @@
         display: grid;
         grid-template-columns: auto auto auto;
         grid-gap: 10px;
-        background-color: #2196F3;
+        background-color: #3F4148;
         padding: 10px;
+        width: 80%;
+        margin: auto;
     }
 
     .grid-container > div {
@@ -21,10 +23,10 @@
         font-size: 20px;
     }
 
-    .item1 {
-        grid-row: 1 / 3;
-        font-size: 30px;
-    }
+    /*.item1 {*/
+    /*    grid-row: 1 / 3;*/
+    /*    font-size: 30px;*/
+    /*}*/
 </style>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -46,13 +48,14 @@
     </div>
 </nav>
 <div>
-    <h2>Per Game Averages</h2>
+    <h2 th:text="'Per Game Averages for ' + ${name}"></h2>
     <div class="grid-container">
-        <div class="item1" th:text="'Points ' +${avgPts}"></div>
-        <div class="item2" th:text="'Rebounds ' +${avgReb}"></div>
-        <div class="item3" th:text="'Assists ' + ${avgAst}"></div>
-        <div class="item4" th:text="'Blocks ' + ${avgBlk}"></div>
-        <div class="item5" th:text="'Steals ' + ${avgStl}"></div>
+        <div class="item1" th:text="'Fantasy Score ' + ${avgFantasyScore}"></div>
+        <div class="item2" th:text="'Points ' +${avgPts}"></div>
+        <div class="item3" th:text="'Rebounds ' +${avgReb}"></div>
+        <div class="item4" th:text="'Assists ' + ${avgAst}"></div>
+        <div class="item5" th:text="'Blocks ' + ${avgBlk}"></div>
+        <div class="item6" th:text="'Steals ' + ${avgStl}"></div>
 
     </div>
     <span ></span>
