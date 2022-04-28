@@ -141,4 +141,9 @@ public class PlayerController {
     public String displayMessageBoard() {
         return "MessageBoard";
     }
+
+    @RequestMapping("/leagueinfo")
+    public String displayLeagueInfo() {
+        return "LeagueInfo";
+    }
 }
