@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" th:href="@{/app.css}"/>
+
+    <title>League Info</title>
+</head>
+<style>
+    table.data {
+        margin: auto;
+        padding: 5px;
+        border-collapse: collapse;
+        line-height: 1.2em;
+        background-color: #ddd;
+    }
+
+    tr.title {
+        background-color: #3F4148;
+        color: white;
+        font-size: 20px;
+    }
+
+    tr.label {
+        font-style: italic;
+        font-size: 18px;
+    }
+
+    p {
+        text-align: center;
+    }
+</style>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="topnav">
+                <a class="navbar-brand" href="/">
+                    <img class="home-logo" src="/images/league-25-color@3x.png" alt="Logo"/>
+                </a>
+                <div class="topnav-right">
+                    <a th:href="@{/}">Dashboard</a>
+                    <a class="active" th:href="@{/leagueinfo}">League Info</a>
+                    <a th:href="@{/myteam}">Build Team</a>
+                    <a th:href="@{/PlayerLibrary}">Player Library</a>
+                    <a th:href="@{/messageboard}">Message Board</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<H3>Teams Overview </H3>
+<p>Managers may select a starting lineup from these eight (8) players. The chart below lists the required number of
+    players at each position for the 'starting lineup' and the max that can be 'drafted'.</p>
+<table class="data" width="80%">
+    <tbody>
+    <tr class="title">
+        <td colspan="3">Roster Requirements</td>
+    </tr>
+    <tr class="label">
+        <td align="left">Position</td>
+        <td>Starting Lineup</td>
+        <td>Draft</td>
+    </tr>
+    <tr class="row1" align="right">
+        <td align="left">Guard (G)</td>
+        <td align="left">2</td>
+        <td align="left">4</td>
+
+    </tr>
+    <tr class="row2" align="right">
+        <td align="left">Forward (F)</td>
+        <td align="left">2</td>
+        <td align="left">4</td>
+    </tr>
+    <tr class="row1" align="right">
+        <td align="left">Center (C)</td>
+        <td align="left">2</td>
+        <td align="left">4</td>
+    </tr>
+    <tr class="row2" align="right">
+        <td align="left">Util (G|F|C)</td>
+        <td align="left">2</td>
+        <td align="left">-</td>
+    </tr>
+    <tr class="row1" align="right">
+        <td align="left">All Positions</td>
+        <td align="left">8</td>
+        <td align="left">8</td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<br>
+<p>
+    During the draft, players are drafted at the position they are listed under in our database.
+</p>
+<br>
+<div class="jss130"></div>
+<H3>How Lineups are Scored</H3>
+<br>
+<table class="data" width="80%">
+    <tbody>
+    <tr class="title">
+        <td colspan="2">Scoring</td>
+    </tr>
+    <tr class="label">
+        <td align="left">Statistic</td>
+        <td>Value</td>
+    </tr>
+    <tr class="row1" align="right">
+        <td align="left">PTS - Points</td>
+        <td align="left">1 point</td>
+    </tr>
+    <tr class="row 2" align="right">
+        <td align="left">REB - Rebounds</td>
+        <td align="left">1.2 points</td>
+    </tr>
+    <tr class="row 1" align="right">
+        <td align="left">AST - Assists</td>
+        <td align="left"> 1.5 points</td>
+    </tr>
+    <tr class="row2" align="right">
+        <td align="left">BLK - Blocks</td>
+        <td align="left">2 points</td>
+    </tr>
+    <tr class="row1" align="right">
+        <td align="left">STL - Steals</td>
+        <td align="left">2 points</td>
+    </tr>
+    </tbody>
+
+</table>
+<br>
+<br>
+<p>
+
+    Each NBA player's points will be averaged based on the game played. For example, if LeBron James scores 90 Fantasy
+    points in 3 games, he will only receive points for the game you selected.
+</p>
+</body>
+</html>
