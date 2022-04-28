@@ -1,6 +1,7 @@
 package com.detroitlabs.fantasybball.model;
 
 
+//NOT USED, LEFT FOR FUTURE REFERENCE (PAGINATION
 //a tad confusing but this will be used to generate list of players in player repository
 public class PlayerVariables {
 

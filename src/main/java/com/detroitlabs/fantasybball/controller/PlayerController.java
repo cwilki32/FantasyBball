@@ -37,16 +37,10 @@ public class PlayerController {
     //placeholder for now will be replaced with dashboard
     @RequestMapping("/")
     public String displayhome(ModelMap modelMap) {
-        //TODO move these to a single method to refactor/clean up .. here so library doesnt pull full list each selection
-        playerRepository.pullPlayers();
-        playerRepository.buildList();
-        //import static linkText
-        playerRepository.buildLineup();
-        seasonStatRepository.pullStats();
-        seasonStatRepository.buildStatAvgs();
+        playerRepository.clearAll();
+        seasonStatRepository.clearAll();
+        dailyStatRepository.clearAll();
         //pull daily stats and display them - top 10 scorers
-        dailyStatRepository.pullDailyStats();
-        dailyStatRepository.buildDailyStats();
         modelMap.put("dailystat", dailyStatRepository.sortDailyStatsByPoints());
         return "home";
     }
@@ -80,12 +74,11 @@ public class PlayerController {
         return "PlayerLibrary";
     }
 
-    //TODO fill out rest of season averages
-
     @RequestMapping("/StatLibrary/{playerIndex}")
     public String displayPlayerStats(@PathVariable int playerIndex, ModelMap modelMap) {
         int id = ALL_PLAYERS.get(playerIndex).getId();
         System.out.println(ALL_PLAYERS.get(playerIndex).getId());
+        //TODO opportunity to change buildStats into a method under ParentSeasonAvg
         ParentSeasonAvg buildStats = StatsService.fetchPlayerAvg(id);
         double avgPts = buildStats.getSeasonAvgStats()[0].getPts();
         double avgReb = buildStats.getSeasonAvgStats()[0].getReb();
@@ -99,7 +92,6 @@ public class PlayerController {
         modelMap.put("avgStl", avgStl);
         return "StatLibrary";
     }
-
 
 
     @RequestMapping("/seasonavg")
@@ -129,8 +121,8 @@ public class PlayerController {
         }
         //TODO currently not working when change players,, probably need to pass in playerIndex
         //get(playerIndex) seems to be doing more than get(i) in calculation
-        double teamFantasyScore=0;
-        for (int i=0; i<playerRepository.getTeam().length; i++) {
+        double teamFantasyScore = 0;
+        for (int i = 0; i < playerRepository.getTeam().length; i++) {
             if (playerRepository.getTeam()[i] != null) {
                 double playerScore = fantasyScoring.calcScoreGame(DAILY_STATS.get(playerIndex).getPts(),
                         DAILY_STATS.get(playerIndex).getReb(), DAILY_STATS.get(playerIndex).getAst(), DAILY_STATS.get(playerIndex).getBlk(),
@@ -145,7 +137,7 @@ public class PlayerController {
         return "MyTeam";
     }
 
-    @RequestMapping ("/messageboard")
+    @RequestMapping("/messageboard")
     public String displayMessageBoard() {
         return "MessageBoard";
     }
