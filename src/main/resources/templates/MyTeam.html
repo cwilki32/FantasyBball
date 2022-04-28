@@ -47,7 +47,7 @@
         text-decoration: underline;
     }
 
-/* collapsible button*/
+    /* collapsible button*/
     .collapsible {
         background-color: #777;
         color: white;
@@ -112,8 +112,10 @@
 
     <!-- need to hide until button is clicked-->
     <button type="button" class="collapsible">Submit Lineup</button>
-    <br>
-    <div class="content" th:text="'Fantasy Score ' +${fantasyScore}"></div>
+
+    <div class="content">
+        <p  th:text="'Fantasy Score ' +${fantasyScore}"></p>
+    </div>
     <br>
     <div class="jss130"></div>
 
