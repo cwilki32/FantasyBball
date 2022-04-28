@@ -1,9 +1,11 @@
 package com.detroitlabs.fantasybball.model;
 
+//NOT USED KEPT FOR FUTURE REFERENCE
 public class Data {
 
     //postman fields to return individual player information
     //used in StatsService.fetchPlayerInfo()
+
     private int id; //TODO should match id from Player class pulled in dataStats
     private String first_name;
     private String last_name;

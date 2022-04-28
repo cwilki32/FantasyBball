@@ -13,8 +13,13 @@ public class DailyStatRepository {
 
     private static ParentStat buildDashboard;
     public static ArrayList<DailyStatsObject> DAILY_STATS = new ArrayList<>();
-    PlayerStats playerStats;
-    FantasyScoring fantasyScoring;
+
+    //method that clears all lists and rebuilds them upon returning to home
+    public void clearAll() {
+        DAILY_STATS.clear();
+        pullDailyStats();
+        buildDailyStats();
+    }
 
     public void pullDailyStats() {
         buildDashboard = StatsService.fetchPlayerStats();
@@ -22,7 +27,7 @@ public class DailyStatRepository {
 
     //builds list of Players and sorts in descending order for Pts
     public List<DailyStatsObject> buildDailyStats() {
-        for (int i = 0; i < 82; i++) {
+        for (int i = 0; i < buildDashboard.getStats().length; i++) {
             DAILY_STATS.add(new DailyStatsObject(buildDashboard.getStats()[i].getPlayer().getFirst_name() + " " + buildDashboard.getStats()[i].getPlayer().getLast_name(),
                     buildDashboard.getStats()[i].getPlayer().getFirst_name(), buildDashboard.getStats()[i].getPlayer().getLast_name(), buildDashboard.getStats()[i].getId(),
                     buildDashboard.getStats()[i].getPts(), buildDashboard.getStats()[i].getReb(), buildDashboard.getStats()[i].getAst(),

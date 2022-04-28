@@ -14,19 +14,25 @@ public class SeasonStatRepository {
     private static FantasyScoring fantasyScoring = new FantasyScoring();
 
 
-    public void pullStats() {
-        buildStats  = StatsService.fetchSeasonAvg();
+    //method that clears all lists and rebuilds them upon returning to home
+    public void clearAll() {
+        ALL_STATS.clear();
+        pullStats();
+        buildStatAvgs();
     }
 
-
+    public void pullStats() {
+        buildStats = StatsService.fetchSeasonAvg();
+    }
 
     public List<SeasonStatsObject> buildStatAvgs() {
-        for (int i=0; i<100; i++) {
+        for (int i = 0; i < 100; i++) {
             ALL_STATS.add(new SeasonStatsObject(buildStats.getSeasonAvgStats()[i].getGames_played(),
                     buildStats.getSeasonAvgStats()[i].getPlayer_id(), buildStats.getSeasonAvgStats()[i].getReb(),
-                    buildStats.getSeasonAvgStats()[i].getAst(),buildStats.getSeasonAvgStats()[i].getStl(),
+                    buildStats.getSeasonAvgStats()[i].getAst(), buildStats.getSeasonAvgStats()[i].getStl(),
                     buildStats.getSeasonAvgStats()[i].getBlk(), buildStats.getSeasonAvgStats()[i].getPts()));
-        } return ALL_STATS;
+        }
+        return ALL_STATS;
 
     }
 }

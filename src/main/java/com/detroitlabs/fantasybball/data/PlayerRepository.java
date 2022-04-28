@@ -24,6 +24,15 @@ public class PlayerRepository {
     public PlayerRepository() {
     }
 
+    //method that clears all lists and rebuilds them upon returning to home
+    public void clearAll() {
+        ALL_PLAYERS.clear();
+        linkText.clear();
+        pullPlayers();
+        buildLineup();
+        buildList();
+    }
+
     public void pullPlayers() {
         buildPlayer = StatsService.fetchPlayerStats();
     }
@@ -37,7 +46,7 @@ public class PlayerRepository {
     }
 
     public List<DailyStatsObject> buildList() {
-        for (int i = 0; i < 82; i++) {
+        for (int i = 0; i < buildPlayer.getStats().length; i++) {
             ALL_PLAYERS.add(new DailyStatsObject(buildPlayer.getStats()[i].getPlayer().getFirst_name() + " " +
                     buildPlayer.getStats()[i].getPlayer().getLast_name(),
                     buildPlayer.getStats()[i].getPlayer().getFirst_name(),
@@ -49,6 +58,7 @@ public class PlayerRepository {
         return ALL_PLAYERS;
     }
 
+    //import static linkText
     public List<String> buildLineup() {
         linkText.add("Select a Guard (G)");
         linkText.add("Select a Guard (G)");
@@ -60,7 +70,6 @@ public class PlayerRepository {
         linkText.add("Select a Util (G|F|C)");
         return linkText;
     }
-
 
 
 }

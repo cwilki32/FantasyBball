@@ -4,6 +4,7 @@ import com.detroitlabs.fantasybball.data.DailyStatRepository;
 
 import java.util.Comparator;
 
+//USED TO SORT ARRAYLIST BY PROPERTY (POINTS SCORED) FOR TOP10 SCORERS LIST
 public class StatsComparator implements Comparator<DailyStatsObject> {
 
     public int compare(DailyStatsObject o1, DailyStatsObject o2) {
