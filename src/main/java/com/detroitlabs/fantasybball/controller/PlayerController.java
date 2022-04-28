@@ -78,11 +78,8 @@ public class PlayerController {
     public String displayPlayerStats(@PathVariable int playerIndex, ModelMap modelMap) {
         int id = ALL_PLAYERS.get(playerIndex).getId();
         String playerName = ALL_PLAYERS.get(playerIndex).getName();
-        System.out.println(ALL_PLAYERS.get(playerIndex).getName());
-        System.out.println(ALL_PLAYERS.get(playerIndex).getId());
         //TODO opportunity to change buildStats into a method under ParentSeasonAvg
         ParentSeasonAvg buildStats = StatsService.fetchPlayerAvg(id);
-
         double avgPts = buildStats.getSeasonAvgStats()[0].getPts();
         double avgReb = buildStats.getSeasonAvgStats()[0].getReb();
         double avgAst = buildStats.getSeasonAvgStats()[0].getAst();
@@ -125,8 +122,7 @@ public class PlayerController {
                 linkText.set(i, ALL_PLAYERS.get(playerRepository.getTeam()[i]).getName());
             }
         }
-        //TODO currently not working when change players,, probably need to pass in playerIndex
-        //get(playerIndex) seems to be doing more than get(i) in calculation
+        //TODO currently not working when change players, possible debugging opportunity
         double teamFantasyScore = 0;
         for (int i = 0; i < playerRepository.getTeam().length; i++) {
             if (playerRepository.getTeam()[i] != null) {
