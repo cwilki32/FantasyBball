@@ -23,6 +23,7 @@ import static com.detroitlabs.fantasybball.data.SeasonStatRepository.ALL_STATS;
 public class PlayerController {
 
     FantasyScoring fantasyScoring = new FantasyScoring();
+    double teamFantasyScore = 0;
 
 
     @Autowired
@@ -43,6 +44,14 @@ public class PlayerController {
         //pull daily stats and display them - top 10 scorers
         modelMap.put("dailystat", dailyStatRepository.sortDailyStatsByPoints());
         return "home";
+    }
+
+    //builds list that directs players to lists based on position, refactor the linkText creation
+    @RequestMapping("/myteam")
+    public String myTeam(ModelMap modelMap) {
+        modelMap.put("linkText", linkText);
+        modelMap.put("players", ALL_PLAYERS);
+        return "MyTeam";
     }
 
     //include position index for player library, restrict available players to certain positions if haven't been selected
@@ -85,7 +94,7 @@ public class PlayerController {
         double avgAst = buildStats.getSeasonAvgStats()[0].getAst();
         double avgBlk = buildStats.getSeasonAvgStats()[0].getBlk();
         double avgStl = buildStats.getSeasonAvgStats()[0].getStl();
-        double avgFantasyScore= fantasyScoring.calcScoreAvg( avgPts, avgReb,  avgAst,  avgBlk,  avgStl);
+        double avgFantasyScore = fantasyScoring.calcScoreAvg(avgPts, avgReb, avgAst, avgBlk, avgStl);
         modelMap.put("name", playerName);
         modelMap.put("avgFantasyScore", avgFantasyScore);
         modelMap.put("avgPts", avgPts);
@@ -94,21 +103,6 @@ public class PlayerController {
         modelMap.put("avgBlk", avgBlk);
         modelMap.put("avgStl", avgStl);
         return "StatLibrary";
-    }
-
-
-    @RequestMapping("/seasonavg")
-    public String statLibrary(ModelMap modelMap) {
-        modelMap.put("SeasonStats", ALL_STATS);
-        return "StatLibrary";
-    }
-
-    //builds list that directs players to lists based on position, refactor the linkText creation
-    @RequestMapping("/myteam")
-    public String myTeam(ModelMap modelMap) {
-        modelMap.put("linkText", linkText);
-        modelMap.put("players", ALL_PLAYERS);
-        return "MyTeam";
     }
 
     @RequestMapping("/myteam/{playerIndex}/{positionIndex}")
@@ -122,22 +116,33 @@ public class PlayerController {
                 linkText.set(i, ALL_PLAYERS.get(playerRepository.getTeam()[i]).getName());
             }
         }
-        //TODO currently not working when change players, possible debugging opportunity
-        double teamFantasyScore = 0;
-        for (int i = 0; i < playerRepository.getTeam().length; i++) {
-            if (playerRepository.getTeam()[i] != null) {
+        //TODO currently not working when change players, possible debugging opportunity, if use code commented out below will only calculate that player 8 times
+//        if (playerRepository.getTeam() != null) {
+//            for (int i = 0; i < playerRepository.getTeam().length; i++) {
                 double playerScore = fantasyScoring.calcScoreGame(DAILY_STATS.get(playerIndex).getPts(),
                         DAILY_STATS.get(playerIndex).getReb(), DAILY_STATS.get(playerIndex).getAst(), DAILY_STATS.get(playerIndex).getBlk(),
                         DAILY_STATS.get(playerIndex).getStl());
                 teamFantasyScore += playerScore;
-            }
-        }
+                System.out.println(playerIndex);
+                System.out.println(playerScore);
+//            }
+//        }
+
+
         modelMap.put("linkText", linkText);
         modelMap.put("players", ALL_PLAYERS);
         modelMap.put("team", playerRepository.getTeam());
         modelMap.put("fantasyScore", teamFantasyScore);
         return "MyTeam";
     }
+
+
+    @RequestMapping("/seasonavg")
+    public String statLibrary(ModelMap modelMap) {
+        modelMap.put("SeasonStats", ALL_STATS);
+        return "StatLibrary";
+    }
+
 
     @RequestMapping("/messageboard")
     public String displayMessageBoard() {
@@ -149,3 +154,4 @@ public class PlayerController {
         return "LeagueInfo";
     }
 }
+

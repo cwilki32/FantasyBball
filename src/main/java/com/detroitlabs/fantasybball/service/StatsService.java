@@ -19,9 +19,9 @@ public class StatsService {
 
     public static ParentStat fetchPlayerStats() {
         RestTemplate restTemplate = new RestTemplate();
-        //TODO make effective date in code dynamic for previous day, currently set to 4/19/22
+        //TODO make effective date in code dynamic for previous day, currently set to 4/28/22
         //TODO Postponed to ensure works during demo
-        return restTemplate.getForObject("https://www.balldontlie.io/api/v1/stats?start_date=2022-04-27&per_page=100", ParentStat.class);
+        return restTemplate.getForObject("https://www.balldontlie.io/api/v1/stats?start_date=2022-04-28&per_page=100", ParentStat.class);
     }
 
     //TODO BUILD API FOR SEASON AVERAGES, requires 7 attempts for all players

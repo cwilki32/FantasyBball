@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.detroitlabs.fantasybball.model.FantasyScoringTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-04-29T13:09:35" hostname="Collins-MBP.attlocal.net" time="0.008">
+  <properties/>
+  <testcase name="scoring_yesterday_game_multiplePlayers()" classname="com.detroitlabs.fantasybball.model.FantasyScoringTest" time="0.008"/>
+  <system-out><![CDATA[09:09:35.161 [Test worker] DEBUG org.springframework.web.client.RestTemplate - HTTP GET https://www.balldontlie.io/api/v1/stats?start_date=2022-04-28&per_page=100
+09:09:35.199 [Test worker] DEBUG org.springframework.web.client.RestTemplate - Accept=[application/json, application/*+json]
+09:09:35.571 [Test worker] DEBUG org.springframework.web.client.RestTemplate - Response 200 OK
+09:09:35.576 [Test worker] DEBUG org.springframework.web.client.RestTemplate - Reading to [com.detroitlabs.fantasybball.model.ParentStat]
+172.20000000000002
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

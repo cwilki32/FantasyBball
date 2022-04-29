@@ -38,7 +38,7 @@ class FantasyScoringTest {
         double teamFantasyScore = 0;
         for (int i=0; i < 8; i++) {
             double playerScore = fantasyScoring.calcScoreGame(buildPlayer.getStats()[i].getPts(), buildPlayer.getStats()[i].getReb()
-                    , buildPlayer.getStats()[i].getAst(), buildPlayer.getStats()[i].getBlk(), buildPlayer.getStats()[1].getStl());
+                    , buildPlayer.getStats()[i].getAst(), buildPlayer.getStats()[i].getBlk(), buildPlayer.getStats()[i].getStl());
             teamFantasyScore += playerScore;
         }
         System.out.println(teamFantasyScore);
